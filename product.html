@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ferry Sokoni - Product</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 font-sans pb-20">
+  <!-- Header -->
+  <header class="flex items-center justify-between p-4 bg-white shadow-md">
+    <a href="catalog.html" class="text-blue-600 hover:text-blue-800 transition duration-300"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></a>
+    <h1 class="text-2xl font-extrabold text-gray-800">Product Details</h1>
+    <a href="#" class="relative p-2 rounded-full hover:bg-gray-100 transition duration-300">
+      <svg class="w-7 h-7 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path d="M3 3h2l.4 2M7 13h10l4-8H5.4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span id="cart-count" class="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-bold rounded-full px-1.5 py-0.5">0</span>
+    </a>
+  </header>
+
+  <main class="p-4">
+    <!-- Product Image Gallery -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden mb-4">
+      <img id="main-product-image" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" alt="Red Snapper" class="w-full h-64 object-cover"/>
+      <div class="flex justify-center p-2 space-x-2 bg-gray-50">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=100&q=80" alt="Red Snapper thumbnail 1" class="w-16 h-16 object-cover rounded-md border-2 border-blue-500 cursor-pointer" onclick="changeImage(this.src)"/>
+        <img src="https://images.unsplash.com/photo-1510486801931-df1534f9a56c?auto=format&fit=crop&w=100&q=80" alt="Red Snapper thumbnail 2" class="w-16 h-16 object-cover rounded-md border-2 border-transparent hover:border-blue-500 cursor-pointer" onclick="changeImage(this.src)"/>
+        <img src="https://images.unsplash.com/photo-1498305001229-880093635798?auto=format&fit=crop&w=100&q=80" alt="Red Snapper thumbnail 3" class="w-16 h-16 object-cover rounded-md border-2 border-transparent hover:border-blue-500 cursor-pointer" onclick="changeImage(this.src)"/>
+      </div>
+    </div>
+
+    <!-- Product Details -->
+    <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+      <h2 class="text-2xl font-bold text-gray-800 mb-2">Red Snapper</h2>
+      <p class="text-gray-700 mb-4">Freshly caught from the pristine waters of Kigamboni, our Red Snapper is known for its delicate flavor and firm, flaky texture. Perfect for grilling, baking, or pan-searing. Responsibly sourced to ensure sustainability.</p>
+
+      <div class="flex items-center justify-between mb-4">
+        <div class="text-xl font-bold text-blue-700" id="product-price">TZS 25,000</div>
+        <div class="flex items-center space-x-2">
+          <label for="weight-select" class="text-gray-700 font-semibold">Weight:</label>
+          <select id="weight-select" class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+            <option value="0.5">0.5 kg</option>
+            <option value="1" selected>1 kg</option>
+            <option value="1.5">1.5 kg</option>
+            <option value="2">2 kg</option>
+          </select>
+        </div>
+      </div>
+      <button id="add-to-cart-button" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition duration-300 shadow-md">Add to Cart</button>
+    </div>
+
+    <!-- Customer Reviews -->
+    <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+      <h3 class="text-xl font-bold text-gray-800 mb-4">Customer Reviews (<span id="review-count">0</span>)</h3>
+      <div id="reviews-list" class="space-y-4 mb-6">
+        <!-- Reviews will be dynamically loaded here by JavaScript -->
+      </div>
+
+      <h4 class="text-lg font-bold text-gray-800 mb-3">Write a Review</h4>
+      <form id="review-form" class="space-y-4">
+        <div>
+          <label class="block text-gray-700 text-sm font-bold mb-2">Your Rating:</label>
+          <div class="flex text-yellow-400 text-2xl" id="star-rating">
+            <span class="cursor-pointer" data-value="1">&#9733;</span>
+            <span class="cursor-pointer" data-value="2">&#9733;</span>
+            <span class="cursor-pointer" data-value="3">&#9733;</span>
+            <span class="cursor-pointer" data-value="4">&#9733;</span>
+            <span class="cursor-pointer" data-value="5">&#9733;</span>
+          </div>
+          <input type="hidden" id="rating-value" name="rating" value="0"/>
+        </div>
+        <div>
+          <label for="review-text" class="block text-gray-700 text-sm font-bold mb-2">Your Review:</label>
+          <textarea id="review-text" name="reviewText" rows="4" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Share your experience..."></textarea>
+        </div>
+        <div>
+          <label for="review-photo" class="block text-gray-700 text-sm font-bold mb-2">Upload Photo (Optional):</label>
+          <input type="file" id="review-photo" name="reviewPhoto" accept="image/*" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"/>
+        </div>
+        <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition duration-300 shadow-md">Submit Review</button>
+      </form>
+
+      <div class="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 text-sm">
+        <h5 class="font-semibold mb-2">Seller Ratings & Moderation:</h5>
+        <p>Our platform ensures fair and authentic reviews. Seller ratings are aggregated from verified purchases. All reviews are subject to moderation guidelines to maintain a respectful and helpful community environment. We reserve the right to remove reviews that violate our terms of service.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Sticky Bottom Nav -->
+  <nav class="fixed bottom-0 left-0 right-0 bg-white shadow-xl flex justify-around py-3 z-50 border-t border-gray-200">
+    <a href="index.html" class="flex flex-col items-center text-gray-600 hover:text-blue-700 transition duration-300">
+      <!-- Home Icon -->
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l9-9 9 9M4 10v10a1 1 0 001 1h3m10-11v10a1 1 0 01-1 1h-3m-6 0h6"/></svg>
+      <span class="text-xs font-medium mt-1">Home</span>
+    </a>
+    <a href="catalog.html" class="flex flex-col items-center text-gray-600 hover:text-blue-700 transition duration-300">
+      <!-- Categories Icon -->
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="6.5" r="2.5"/><circle cx="6.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+      <span class="text-xs font-medium mt-1">Categories</span>
+    </a>
+    <a href="cart.html" class="flex flex-col items-center text-blue-700 hover:text-blue-800 transition duration-300">
+      <!-- Cart Icon -->
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A2 2 0 007.48 19h9.04a2 2 0 001.83-1.3L21 13"/></svg>
+      <span class="text-xs font-medium mt-1">Cart</span>
+    </a>
+    <a href="account.html" class="flex flex-col items-center text-gray-600 hover:text-blue-700 transition duration-300">
+      <!-- Account Icon -->
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      <span class="text-xs font-medium mt-1">Account</span>
+    </a>
+    <a href="support.html" class="flex flex-col items-center text-gray-600 hover:text-blue-700 transition duration-300">
+      <!-- Support Icon -->
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636A9 9 0 105.636 18.364 9 9 0 0018.364 5.636z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9.172 9.172a4 4 0 105.656 5.656"/></svg>
+      <span class="text-xs font-medium mt-1">Support</span>
+    </a>
+  </nav>
+  <script src="main.js"></script>
+  <script>
+    // Price calculation logic
+    const basePrice = 25000; // TZS per 1kg
+    const priceEl = document.getElementById('product-price');
+    document.getElementById('weight-select').addEventListener('change', function() {
+      const weight = parseFloat(this.value);
+      const price = Math.round(basePrice * weight);
+      priceEl.textContent = `TZS ${price.toLocaleString()}`;
+    });
+  </script>
+</body>
+</html> 

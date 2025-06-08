@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ferry Sokoni - Catalog</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 font-sans pb-20">
+  <!-- Header -->
+  <header class="flex items-center justify-between p-4 bg-white shadow-md">
+    <h1 class="text-2xl font-extrabold text-gray-800">Product Catalog</h1>
+    <a href="#" class="relative p-2 rounded-full hover:bg-gray-100 transition duration-300">
+      <svg class="w-7 h-7 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path d="M3 3h2l.4 2M7 13h10l4-8H5.4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span id="cart-count" class="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-bold rounded-full px-1.5 py-0.5">0</span>
+    </a>
+  </header>
+
+  <!-- Search and Filter -->
+  <div class="p-4 bg-white shadow-sm rounded-lg mx-4 -mt-8 z-10">
+    <input type="text" id="catalog-search-input" placeholder="Search products..." class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 mb-3"/>
+    <div class="flex justify-between items-center">
+      <select class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-gray-700">
+        <option>All Categories</option>
+        <option>Fish</option>
+        <option>Shrimp</option>
+        <option>Crab</option>
+        <option>Octopus</option>
+      </select>
+      <select class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-gray-700">
+        <option>Sort by: Popularity</option>
+        <option>Sort by: Price Low to High</option>
+        <option>Sort by: Price High to Low</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Product Grid -->
+  <div class="p-4 mt-4 grid grid-cols-2 gap-4" id="product-grid">
+    <!-- Product cards will be dynamically loaded here by JavaScript -->
+    <div class="bg-white rounded-lg shadow-md p-3 group">
+      <a href="product.html" class="block">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" class="w-full h-32 object-cover rounded-md mb-2 transform transition-transform duration-300 group-hover:scale-105" alt="Red Snapper"/>
+        <div class="mt-2">
+          <h4 class="font-bold text-base text-gray-800">Red Snapper</h4>
+          <p class="text-xs text-gray-600">Freshly caught, 1kg</p>
+          <p class="text-blue-700 font-bold text-lg mt-1">TZS 25,000</p>
+        </div>
+      </a>
+      <button class="mt-3 w-full bg-blue-600 text-white rounded-lg py-2 text-sm font-semibold hover:bg-blue-700 transition duration-300 shadow-md">Add to Cart</button>
+    </div>
+    <div class="bg-white rounded-lg shadow-md p-3 group">
+      <a href="product.html" class="block">
+        <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3fd8?auto=format&fit=crop&w=400&q=80" class="w-full h-32 object-cover rounded-md mb-2 transform transition-transform duration-300 group-hover:scale-105" alt="Tiger Prawns"/>
+        <div class="mt-2">
+          <h4 class="font-bold text-base text-gray-800">Tiger Prawns</h4>
+          <p class="text-xs text-gray-600">Large, 500g</p>
+          <p class="text-blue-700 font-bold text-lg mt-1">TZS 18,000</p>
+        </div>
+      </a>
+      <button class="mt-3 w-full bg-blue-600 text-white rounded-lg py-2 text-sm font-semibold hover:bg-blue-700 transition duration-300 shadow-md">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- Sticky Bottom Nav -->
+  <nav class="fixed bottom-0 left-0 right-0 bg-white shadow-xl flex justify-around py-3 z-50 border-t border-gray-200">
+    <a href="index.html" class="flex flex-col items-center text-gray-600 hover:text-blue-700 transition duration-300">
+      <!-- Home Icon -->
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l9-9 9 9M4 10v10a1 1 0 001 1h3m10-11v10a1 1 0 01-1 1h-3m-6 0h6"/></svg>
+      <span class="text-xs font-medium mt-1">Home</span>
+    </a>
+    <a href="catalog.html" class="flex flex-col items-center text-blue-700 hover:text-blue-800 transition duration-300">
+      <!-- Categories Icon -->
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="6.5" r="2.5"/><circle cx="6.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+      <span class="text-xs font-medium mt-1">Categories</span>
+    </a>
+    <a href="cart.html" class="flex flex-col items-center text-gray-600 hover:text-blue-700 transition duration-300">
+      <!-- Cart Icon -->
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A2 2 0 007.48 19h9.04a2 2 0 001.83-1.3L21 13"/></svg>
+      <span class="text-xs font-medium mt-1">Cart</span>
+    </a>
+    <a href="account.html" class="flex flex-col items-center text-gray-600 hover:text-blue-700 transition duration-300">
+      <!-- Account Icon -->
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      <span class="text-xs font-medium mt-1">Account</span>
+    </a>
+    <a href="support.html" class="flex flex-col items-center text-gray-600 hover:text-blue-700 transition duration-300">
+      <!-- Support Icon -->
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636A9 9 0 105.636 18.364 9 9 0 0018.364 5.636z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9.172 9.172a4 4 0 105.656 5.656"/></svg>
+      <span class="text-xs font-medium mt-1">Support</span>
+    </a>
+  </nav>
+</body>
+</html> 
