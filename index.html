@@ -20,7 +20,7 @@
 
   <!-- Hero Banner -->
   <section class="relative">
-    <img src="images/hero-image.jpg" alt="Fresh Groceries" class="w-full h-64 object-cover rounded-lg shadow-lg">
+    <img src="images/1.jpg" alt="Fresh Groceries" class="w-full h-64 object-cover rounded-lg shadow-lg">
     <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
       <h2 class="text-3xl md:text-5xl text-white font-bold text-center drop-shadow-lg">Fresh Seafood from Kigamboni to Your Plate</h2>
     </div>
@@ -44,26 +44,46 @@
   <!-- Categories Carousel -->
   <div class="p-4">
     <h3 class="text-xl font-bold text-gray-800 mb-3">Categories</h3>
-    <div class="flex space-x-4 overflow-x-auto pb-2">
+    <div class="flex space-x-4 overflow-x-auto pb-2 scroll-smooth" id="categories-container">
       <div class="flex flex-col items-center flex-shrink-0 w-24">
-        <img src="images/product1.jpg" alt="Fresh Vegetables" class="w-full h-48 object-cover rounded-lg">
-        <span class="mt-2 text-sm font-medium text-gray-700">Fish</span>
+        <img src="images/pweza.jpg" alt="Pweza" class="w-full h-48 object-cover rounded-lg">
+        <span class="mt-2 text-sm font-medium text-gray-700">Pweza</span>
       </div>
       <div class="flex flex-col items-center flex-shrink-0 w-24">
-        <img src="images/product2.jpg" alt="Fresh Fruits" class="w-full h-48 object-cover rounded-lg">
-        <span class="mt-2 text-sm font-medium text-gray-700">Shrimp</span>
+        <img src="images/changu.jpg" alt="Changu" class="w-full h-48 object-cover rounded-lg">
+        <span class="mt-2 text-sm font-medium text-gray-700">Changu</span>
       </div>
       <div class="flex flex-col items-center flex-shrink-0 w-24">
-        <img src="images/product3.jpg" alt="Fresh Meat" class="w-full h-48 object-cover rounded-lg">
-        <span class="mt-2 text-sm font-medium text-gray-700">Crab</span>
+        <img src="images/kolekole.jpg" alt="Kolekole" class="w-full h-48 object-cover rounded-lg">
+        <span class="mt-2 text-sm font-medium text-gray-700">Kolekole</span>
       </div>
       <div class="flex flex-col items-center flex-shrink-0 w-24">
-        <img src="images/product4.jpg" alt="Fresh Fish" class="w-full h-48 object-cover rounded-lg">
-        <span class="mt-2 text-sm font-medium text-gray-700">Octopus</span>
+        <img src="images/nguru.jpg" alt="Nguru" class="w-full h-48 object-cover rounded-lg">
+        <span class="mt-2 text-sm font-medium text-gray-700">Nguru</span>
       </div>
       <div class="flex flex-col items-center flex-shrink-0 w-24">
-        <img src="images/ferry-sokoni-logo.png" alt="Ferry Sokoni Logo" class="h-8">
-        <span class="mt-2 text-sm font-medium text-gray-700">Dried Fish</span>
+        <img src="images/taasi.jpg" alt="Taasi" class="w-full h-48 object-cover rounded-lg">
+        <span class="mt-2 text-sm font-medium text-gray-700">Taasi</span>
+      </div>
+      <div class="flex flex-col items-center flex-shrink-0 w-24">
+        <img src="images/chewa.jpg" alt="Chewa" class="w-full h-48 object-cover rounded-lg">
+        <span class="mt-2 text-sm font-medium text-gray-700">Chewa</span>
+      </div>
+      <div class="flex flex-col items-center flex-shrink-0 w-24">
+        <img src="images/kambale.jpg" alt="Kambale" class="w-full h-48 object-cover rounded-lg">
+        <span class="mt-2 text-sm font-medium text-gray-700">Kambale</span>
+      </div>
+      <div class="flex flex-col items-center flex-shrink-0 w-24">
+        <img src="images/dagaa.jpg" alt="Dagaa" class="w-full h-48 object-cover rounded-lg">
+        <span class="mt-2 text-sm font-medium text-gray-700">Dagaa</span>
+      </div>
+      <div class="flex flex-col items-center flex-shrink-0 w-24">
+        <img src="images/kobe.jpg" alt="Kobe kobe" class="w-full h-48 object-cover rounded-lg">
+        <span class="mt-2 text-sm font-medium text-gray-700">Kobe kobe</span>
+      </div>
+      <div class="flex flex-col items-center flex-shrink-0 w-24">
+        <img src="images/mgebuka.jpg" alt="Mgebuka" class="w-full h-48 object-cover rounded-lg">
+        <span class="mt-2 text-sm font-medium text-gray-700">Mgebuka</span>
       </div>
     </div>
   </div>
@@ -72,26 +92,43 @@
   <div class="p-4">
     <h3 class="text-xl font-bold text-gray-800 mb-3">Featured Products</h3>
     <div class="grid grid-cols-2 gap-4">
-      <!-- Example Product Card -->
-      <div class="bg-white rounded-lg shadow-md p-3 group">
-        <img src="images/product1.jpg" class="w-full h-32 object-cover rounded-md mb-2 transform transition-transform duration-300 group-hover:scale-105" alt="Red Snapper"/>
+      <!-- Product Card -->
+      <a href="product.html?id=tilapia" class="bg-white rounded-lg shadow-md p-3 group">
+        <img src="images/chewa.jpg" class="w-full h-32 object-cover rounded-md mb-2 transform transition-transform duration-300 group-hover:scale-105" alt="Tilapia"/>
         <div class="mt-2">
-          <h4 class="font-bold text-base text-gray-800">Red Snapper</h4>
-          <p class="text-xs text-gray-600">Freshly caught, 1kg</p>
+          <h4 class="font-bold text-base text-gray-800">Tilapia</h4>
+          <p class="text-xs text-gray-600">Fresh, 1kg</p>
+          <p class="text-blue-700 font-bold text-lg mt-1">TZS 15,000</p>
+          <button class="mt-3 w-full bg-blue-600 text-white rounded-lg py-2 text-sm font-semibold hover:bg-blue-700 transition duration-300 shadow-md">View Product</button>
+        </div>
+      </a>
+      <a href="product.html?id=dagaa" class="bg-white rounded-lg shadow-md p-3 group">
+        <img src="images/dagaa.jpg" class="w-full h-32 object-cover rounded-md mb-2 transform transition-transform duration-300 group-hover:scale-105" alt="Dagaa"/>
+        <div class="mt-2">
+          <h4 class="font-bold text-base text-gray-800">Dagaa</h4>
+          <p class="text-xs text-gray-600">Dried, 500g</p>
+          <p class="text-blue-700 font-bold text-lg mt-1">TZS 8,000</p>
+          <button class="mt-3 w-full bg-blue-600 text-white rounded-lg py-2 text-sm font-semibold hover:bg-blue-700 transition duration-300 shadow-md">View Product</button>
+        </div>
+      </a>
+      <a href="product.html?id=kapeta" class="bg-white rounded-lg shadow-md p-3 group">
+        <img src="images/kapeta.jpg" class="w-full h-32 object-cover rounded-md mb-2 transform transition-transform duration-300 group-hover:scale-105" alt="Kapeta"/>
+        <div class="mt-2">
+          <h4 class="font-bold text-base text-gray-800">Kapeta</h4>
+          <p class="text-xs text-gray-600">Fresh, 1kg</p>
+          <p class="text-blue-700 font-bold text-lg mt-1">TZS 12,000</p>
+          <button class="mt-3 w-full bg-blue-600 text-white rounded-lg py-2 text-sm font-semibold hover:bg-blue-700 transition duration-300 shadow-md">View Product</button>
+        </div>
+      </a>
+      <a href="product.html?id=kambale" class="bg-white rounded-lg shadow-md p-3 group">
+        <img src="images/kambale.jpg" class="w-full h-32 object-cover rounded-md mb-2 transform transition-transform duration-300 group-hover:scale-105" alt="Kambale"/>
+        <div class="mt-2">
+          <h4 class="font-bold text-base text-gray-800">Kambale</h4>
+          <p class="text-xs text-gray-600">Fresh, 1kg</p>
           <p class="text-blue-700 font-bold text-lg mt-1">TZS 25,000</p>
-          <button class="mt-3 w-full bg-blue-600 text-white rounded-lg py-2 text-sm font-semibold hover:bg-blue-700 transition duration-300 shadow-md">Add to Cart</button>
+          <button class="mt-3 w-full bg-blue-600 text-white rounded-lg py-2 text-sm font-semibold hover:bg-blue-700 transition duration-300 shadow-md">View Product</button>
         </div>
-      </div>
-      <div class="bg-white rounded-lg shadow-md p-3 group">
-        <img src="images/product2.jpg" class="w-full h-32 object-cover rounded-md mb-2 transform transition-transform duration-300 group-hover:scale-105" alt="Tiger Prawns"/>
-        <div class="mt-2">
-          <h4 class="font-bold text-base text-gray-800">Tiger Prawns</h4>
-          <p class="text-xs text-gray-600">Large, 500g</p>
-          <p class="text-blue-700 font-bold text-lg mt-1">TZS 18,000</p>
-          <button class="mt-3 w-full bg-blue-600 text-white rounded-lg py-2 text-sm font-semibold hover:bg-blue-700 transition duration-300 shadow-md">Add to Cart</button>
-        </div>
-      </div>
-      <!-- Add more product cards as needed -->
+      </a>
     </div>
   </div>
 
@@ -128,6 +165,50 @@
     document.addEventListener('DOMContentLoaded', () => {
       const cartCount = localStorage.getItem('cartCount') || 0;
       document.getElementById('cart-count').textContent = cartCount;
+    });
+
+    // Add this to your existing script section
+    document.addEventListener('DOMContentLoaded', () => {
+      const categoriesContainer = document.getElementById('categories-container');
+      let scrollAmount = 0;
+      const scrollSpeed = 1; // Adjust speed as needed
+      const scrollInterval = 30; // Adjust interval as needed
+
+      // Auto scroll function
+      function autoScroll() {
+        scrollAmount += scrollSpeed;
+        if (scrollAmount >= categoriesContainer.scrollWidth - categoriesContainer.clientWidth) {
+          scrollAmount = 0;
+        }
+        categoriesContainer.scrollLeft = scrollAmount;
+      }
+
+      // Start auto scrolling
+      let scrollIntervalId = setInterval(autoScroll, scrollInterval);
+
+      // Pause scrolling on hover
+      categoriesContainer.addEventListener('mouseenter', () => {
+        clearInterval(scrollIntervalId);
+      });
+
+      // Resume scrolling when mouse leaves
+      categoriesContainer.addEventListener('mouseleave', () => {
+        scrollIntervalId = setInterval(autoScroll, scrollInterval);
+      });
+
+      // Touch events for mobile
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      categoriesContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        clearInterval(scrollIntervalId);
+      });
+
+      categoriesContainer.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].clientX;
+        scrollIntervalId = setInterval(autoScroll, scrollInterval);
+      });
     });
   </script>
   <script src="main.js"></script>

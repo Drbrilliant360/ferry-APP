@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ferry Sokoni - Payment</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 font-sans pb-20">
+  <!-- Header -->
+  <header class="flex items-center justify-between p-4 bg-white shadow-md">
+    <a href="checkout.html" class="text-blue-600 hover:text-blue-800 transition duration-300">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+      </svg>
+    </a>
+    <h1 class="text-2xl font-extrabold text-gray-800">Payment</h1>
+    <div class="w-7"></div> <!-- Spacer for alignment -->
+  </header>
+
+  <main class="p-4">
+    <!-- Payment Details -->
+    <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Payment Details</h2>
+      <div id="payment-method-container" class="space-y-4">
+        <!-- Mobile Money Section -->
+        <div id="mobile-money-section" class="space-y-4">
+          <div>
+            <label for="mobile-provider" class="block text-gray-700 text-sm font-bold mb-2">Select Provider:</label>
+            <select id="mobile-provider" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+              <option value="mpesa">M-Pesa</option>
+              <option value="tigo">Tigo Pesa</option>
+              <option value="airtel">Airtel Money</option>
+            </select>
+          </div>
+          <div>
+            <label for="phone-number" class="block text-gray-700 text-sm font-bold mb-2">Phone Number:</label>
+            <input type="tel" id="phone-number" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Enter your phone number"/>
+          </div>
+        </div>
+
+        <!-- Cash on Delivery Section -->
+        <div id="cash-delivery-section" class="hidden space-y-4">
+          <p class="text-gray-700">You will pay in cash when your order is delivered.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Order Summary</h2>
+      <div id="payment-order-summary" class="space-y-2 text-gray-700">
+        <!-- Order items will be dynamically loaded here -->
+      </div>
+      <div class="flex justify-between text-lg font-bold text-gray-800 border-t pt-2 mt-2">
+        <span>Total:</span>
+        <span id="payment-total-price">TZS 0</span>
+      </div>
+    </div>
+
+    <button id="confirm-payment-btn" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition duration-300 shadow-md">Confirm Payment</button>
+  </main>
+
+  <!-- Sticky Bottom Nav -->
+  <nav class="fixed bottom-0 left-0 right-0 bg-white shadow-xl flex justify-around py-3 z-50 border-t border-gray-200">
+    <a href="index.html" class="flex flex-col items-center text-gray-600 hover:text-blue-700 transition duration-300">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l9-9 9 9M4 10v10a1 1 0 001 1h3m10-11v10a1 1 0 01-1 1h-3m-6 0h6"/>
+      </svg>
+      <span class="text-xs font-medium mt-1">Home</span>
+    </a>
+    <a href="catalog.html" class="flex flex-col items-center text-gray-600 hover:text-blue-700 transition duration-300">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="6.5" r="2.5"/><circle cx="6.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/>
+      </svg>
+      <span class="text-xs font-medium mt-1">Categories</span>
+    </a>
+    <a href="cart.html" class="flex flex-col items-center text-gray-600 hover:text-blue-700 transition duration-300">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A2 2 0 007.48 19h9.04a2 2 0 001.83-1.3L21 13"/>
+      </svg>
+      <span class="text-xs font-medium mt-1">Cart</span>
+    </a>
+    <a href="account.html" class="flex flex-col items-center text-gray-600 hover:text-blue-700 transition duration-300">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+      </svg>
+      <span class="text-xs font-medium mt-1">Account</span>
+    </a>
+    <a href="support.html" class="flex flex-col items-center text-gray-600 hover:text-blue-700 transition duration-300">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636A9 9 0 105.636 18.364 9 9 0 0018.364 5.636z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9.172 9.172a4 4 0 105.656 5.656"/>
+      </svg>
+      <span class="text-xs font-medium mt-1">Support</span>
+    </a>
+  </nav>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Get payment method from localStorage
+      const paymentMethod = localStorage.getItem('paymentMethod');
+      const mobileMoneySection = document.getElementById('mobile-money-section');
+      const cashDeliverySection = document.getElementById('cash-delivery-section');
+
+      // Show appropriate payment section
+      if (paymentMethod === 'cash-on-delivery') {
+        mobileMoneySection.classList.add('hidden');
+        cashDeliverySection.classList.remove('hidden');
+      } else {
+        mobileMoneySection.classList.remove('hidden');
+        cashDeliverySection.classList.add('hidden');
+      }
+
+      // Load order summary
+      const orderSummary = JSON.parse(localStorage.getItem('orderSummary') || '[]');
+      const totalPrice = localStorage.getItem('totalPrice') || '0';
+      
+      const summaryContainer = document.getElementById('payment-order-summary');
+      const totalElement = document.getElementById('payment-total-price');
+      
+      summaryContainer.innerHTML = orderSummary.map(item => `
+        <div class="flex justify-between">
+          <span>${item.name} x${item.quantity}</span>
+          <span>TZS ${item.price}</span>
+        </div>
+      `).join('');
+      
+      totalElement.textContent = `TZS ${totalPrice}`;
+
+      // Handle payment confirmation
+      document.getElementById('confirm-payment-btn').addEventListener('click', () => {
+        // Here you would typically integrate with a payment gateway
+        // For now, we'll just show a success message and redirect
+        alert('Payment successful! Thank you for your order.');
+        localStorage.removeItem('cartItems');
+        localStorage.removeItem('orderSummary');
+        localStorage.removeItem('totalPrice');
+        window.location.href = 'index.html';
+      });
+    });
+  </script>
+</body>
+</html> 

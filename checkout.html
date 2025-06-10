@@ -126,6 +126,42 @@
       <span class="text-xs font-medium mt-1">Support</span>
     </a>
   </nav>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Handle place order button click
+      document.getElementById('place-order-btn').addEventListener('click', () => {
+        // Get form values
+        const fullName = document.getElementById('full-name').value;
+        const phoneNumber = document.getElementById('phone-number').value;
+        const streetAddress = document.getElementById('street-address').value;
+        const area = document.getElementById('area-kigamboni').value;
+        const deliveryTime = document.getElementById('delivery-time').value;
+        const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+
+        // Validate form
+        if (!fullName || !phoneNumber || !streetAddress || !area || !deliveryTime) {
+          alert('Please fill in all required fields');
+          return;
+        }
+
+        // Save order details to localStorage
+        localStorage.setItem('orderDetails', JSON.stringify({
+          fullName,
+          phoneNumber,
+          streetAddress,
+          area,
+          deliveryTime,
+          paymentMethod
+        }));
+
+        // Save payment method for payment page
+        localStorage.setItem('paymentMethod', paymentMethod);
+
+        // Redirect to payment page
+        window.location.href = 'payment.html';
+      });
+    });
+  </script>
   <script src="main.js"></script>
   <img src="images/ferry-sokoni-logo.png" alt="Ferry Sokoni Logo" class="h-8">
   <img src="images/product1.jpg" alt="Fresh Vegetables" class="w-full h-48 object-cover rounded-lg">
