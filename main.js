@@ -18,7 +18,7 @@ const mockProducts = [
 
 const seasonalBanner = {
   active: true,
-  message: 'Monsoon Special - Oysters 20% off!',
+  message: 'welcome get the best fishes in tanzania',
 };
 
 const productReviews = [
