@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Seller Products - Ferry Sokoni</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .bg-light-green { background-color: #e6f7e6; }
+    .text-light-green { color: #2e7d32; }
+  </style>
+</head>
+<body class="bg-light-green font-sans">
+  <!-- Top Navigation -->
+  <nav class="bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <a href="dashboard.html" class="text-xl font-bold text-gray-800">Seller Portal</a>
+        </div>
+        <div class="flex items-center space-x-4">
+          <a href="orders.html" class="text-gray-600 hover:text-blue-600">Orders</a>
+          <a href="products.html" class="text-blue-600 font-semibold">Products</a>
+          <a href="analytics.html" class="text-gray-600 hover:text-blue-600">Analytics</a>
+          <a href="messages.html" class="text-gray-600 hover:text-blue-600">Messages</a>
+          <a href="settings.html" class="text-gray-600 hover:text-blue-600">Settings</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <h2 class="text-2xl font-bold mb-6">Product & Inventory Management</h2>
+    <!-- Add New Product -->
+    <section class="mb-8">
+      <h3 class="text-lg font-semibold mb-2">Add New Product</h3>
+      <div class="bg-white rounded shadow p-4 mb-2">[Multi-image upload, SKU/barcode, category tagging, variants]</div>
+    </section>
+    <!-- Inventory Management -->
+    <section class="mb-8">
+      <h3 class="text-lg font-semibold mb-2">Inventory Management</h3>
+      <div class="bg-white rounded shadow p-4 mb-2">[Low-stock alerts, bulk updates, real-time sync]</div>
+    </section>
+    <!-- Product Organizer -->
+    <section class="mb-8">
+      <h3 class="text-lg font-semibold mb-2">Product Organizer</h3>
+      <div class="bg-white rounded shadow p-4 mb-2">[Sort/filter, batch editing]</div>
+    </section>
+    <!-- Submit Button -->
+    <div class="flex justify-end">
+      <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Submit Product</button>
+    </div>
+  </div>
+  <script>
+    // Submit button functionality
+    document.querySelector('button:contains("Submit Product")').addEventListener('click', () => {
+      alert('Product submitted successfully!');
+    });
+  </script>
+</body>
+</html> 

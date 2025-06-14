@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Seller Orders - Ferry Sokoni</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .bg-light-green { background-color: #e6f7e6; }
+    .text-light-green { color: #2e7d32; }
+  </style>
+</head>
+<body class="bg-light-green font-sans">
+  <!-- Top Navigation -->
+  <nav class="bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <a href="dashboard.html" class="text-xl font-bold text-gray-800">Seller Portal</a>
+        </div>
+        <div class="flex items-center space-x-4">
+          <a href="orders.html" class="text-blue-600 font-semibold">Orders</a>
+          <a href="products.html" class="text-gray-600 hover:text-blue-600">Products</a>
+          <a href="analytics.html" class="text-gray-600 hover:text-blue-600">Analytics</a>
+          <a href="messages.html" class="text-gray-600 hover:text-blue-600">Messages</a>
+          <a href="settings.html" class="text-gray-600 hover:text-blue-600">Settings</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <h2 class="text-2xl font-bold mb-6">Order Management</h2>
+    <!-- Order Verification Hub -->
+    <section class="mb-8">
+      <h3 class="text-lg font-semibold mb-2">Order Verification Hub</h3>
+      <div class="bg-white rounded shadow p-4 mb-2">[Order list with verification, customer details, payment status, items]</div>
+    </section>
+    <!-- Order Status Tracking -->
+    <section class="mb-8">
+      <h3 class="text-lg font-semibold mb-2">Order Status Tracking</h3>
+      <div class="bg-white rounded shadow p-4 mb-2">[Visual pipeline: Pending → Verified → Processing → Shipped → Delivered]</div>
+    </section>
+    <!-- Bulk Actions -->
+    <section class="mb-8">
+      <h3 class="text-lg font-semibold mb-2">Bulk Actions</h3>
+      <div class="bg-white rounded shadow p-4 mb-2">[Select multiple orders, update status]</div>
+    </section>
+    <!-- Order Search/Filters -->
+    <section class="mb-8">
+      <h3 class="text-lg font-semibold mb-2">Order Search & Filters</h3>
+      <div class="bg-white rounded shadow p-4 mb-2">[Search by ID, date, customer, product]</div>
+    </section>
+    <!-- Verification Toolkit -->
+    <section class="mb-8">
+      <h3 class="text-lg font-semibold mb-2">Verification Toolkit</h3>
+      <div class="bg-white rounded shadow p-4 mb-2">[Fraud detection, suspicious order highlight, address validation, quick-view summary]</div>
+    </section>
+    <!-- Submit Button -->
+    <div class="flex justify-end">
+      <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Submit Order</button>
+    </div>
+  </div>
+  <script>
+    // Submit button functionality
+    document.querySelector('button:contains("Submit Order")').addEventListener('click', () => {
+      alert('Order submitted successfully!');
+    });
+  </script>
+</body>
+</html> 

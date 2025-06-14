@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Product - Ferry Sokoni</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .bg-light-green { background-color: #e6f7e6; }
+    .text-light-green { color: #2e7d32; }
+    .dropzone { border: 2px dashed #ccc; border-radius: 0.5rem; padding: 2rem; text-align: center; }
+    .dropzone.dragover { border-color: #3b82f6; background-color: #e6f7e6; }
+  </style>
+</head>
+<body class="bg-light-green font-sans">
+  <!-- Top Navigation -->
+  <nav class="bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <a href="dashboard.html" class="text-xl font-bold text-gray-800">Seller Portal</a>
+        </div>
+        <div class="flex items-center space-x-4">
+          <a href="orders.html" class="text-gray-600 hover:text-blue-600">Orders</a>
+          <a href="products.html" class="text-blue-600 font-semibold">Products</a>
+          <a href="analytics.html" class="text-gray-600 hover:text-blue-600">Analytics</a>
+          <a href="messages.html" class="text-gray-600 hover:text-blue-600">Messages</a>
+          <a href="settings.html" class="text-gray-600 hover:text-blue-600">Settings</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <h2 class="text-2xl font-bold mb-6">Add / Edit Product</h2>
+    <!-- Multi-image upload -->
+    <section class="mb-8">
+      <h3 class="text-lg font-semibold mb-2">Product Images</h3>
+      <div class="bg-white rounded shadow p-4 mb-2">
+        <div class="dropzone" id="dropzone">
+          <p class="text-gray-500">Drag & drop images here or click to upload</p>
+          <input type="file" multiple class="hidden" id="fileInput">
+        </div>
+        <div id="imagePreview" class="mt-4 grid grid-cols-3 gap-4"></div>
+      </div>
+    </section>
+    <!-- SKU/barcode generator -->
+    <section class="mb-8">
+      <h3 class="text-lg font-semibold mb-2">SKU/Barcode Generator</h3>
+      <div class="bg-white rounded shadow p-4 mb-2">
+        <input type="text" placeholder="Enter product name for SKU" class="w-full p-2 border border-gray-300 rounded mb-2">
+        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Generate SKU</button>
+      </div>
+    </section>
+    <!-- Category tagging system -->
+    <section class="mb-8">
+      <h3 class="text-lg font-semibold mb-2">Category Tagging</h3>
+      <div class="bg-white rounded shadow p-4 mb-2">
+        <input type="text" placeholder="Add categories (comma-separated)" class="w-full p-2 border border-gray-300 rounded mb-2">
+        <div id="categoryTags" class="flex flex-wrap gap-2"></div>
+      </div>
+    </section>
+    <!-- Variant creator -->
+    <section class="mb-8">
+      <h3 class="text-lg font-semibold mb-2">Variant Creator</h3>
+      <div class="bg-white rounded shadow p-4 mb-2">
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700">Size</label>
+          <input type="text" placeholder="Add size" class="w-full p-2 border border-gray-300 rounded mb-2">
+          <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Add Size</button>
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700">Color</label>
+          <input type="text" placeholder="Add color" class="w-full p-2 border border-gray-300 rounded mb-2">
+          <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Add Color</button>
+        </div>
+        <div id="variants" class="mt-4">
+          <!-- Variants will be dynamically added here -->
+        </div>
+      </div>
+    </section>
+    <!-- Submit Button -->
+    <div class="flex justify-end">
+      <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Submit Product</button>
+    </div>
+  </div>
+  <script>
+    // Multi-image upload + drag/drop interface
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('fileInput');
+    const imagePreview = document.getElementById('imagePreview');
+
+    dropzone.addEventListener('click', () => fileInput.click());
+    dropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.classList.add('dragover');
+    });
+    dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('dragover');
+      const files = e.dataTransfer.files;
+      handleFiles(files);
+    });
+    fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+
+    function handleFiles(files) {
+      Array.from(files).forEach(file => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.className = 'w-full h-24 object-cover rounded';
+          imagePreview.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // SKU/barcode generator
+    document.querySelector('button').addEventListener('click', () => {
+      const productName = document.querySelector('input[placeholder="Enter product name for SKU"]').value;
+      const sku = productName.toUpperCase().replace(/\s+/g, '-') + '-' + Math.random().toString(36).substr(2, 9);
+      alert('Generated SKU: ' + sku);
+    });
+
+    // Category tagging system
+    const categoryInput = document.querySelector('input[placeholder="Add categories (comma-separated)"]');
+    const categoryTags = document.getElementById('categoryTags');
+
+    categoryInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ',') {
+        e.preventDefault();
+        const category = categoryInput.value.trim();
+        if (category) {
+          const tag = document.createElement('span');
+          tag.className = 'bg-blue-100 text-blue-800 px-2 py-1 rounded';
+          tag.textContent = category;
+          categoryTags.appendChild(tag);
+          categoryInput.value = '';
+        }
+      }
+    });
+
+    // Variant creator
+    const variants = document.getElementById('variants');
+    let sizes = [];
+    let colors = [];
+
+    document.querySelector('button:contains("Add Size")').addEventListener('click', () => {
+      const size = document.querySelector('input[placeholder="Add size"]').value.trim();
+      if (size) {
+        sizes.push(size);
+        updateVariants();
+      }
+    });
+
+    document.querySelector('button:contains("Add Color")').addEventListener('click', () => {
+      const color = document.querySelector('input[placeholder="Add color"]').value.trim();
+      if (color) {
+        colors.push(color);
+        updateVariants();
+      }
+    });
+
+    function updateVariants() {
+      variants.innerHTML = '';
+      sizes.forEach(size => {
+        colors.forEach(color => {
+          const variant = document.createElement('div');
+          variant.className = 'border p-2 mb-2';
+          variant.innerHTML = `
+            <p>Size: ${size}, Color: ${color}</p>
+            <input type="number" placeholder="Price" class="w-full p-2 border border-gray-300 rounded mb-2">
+            <input type="number" placeholder="Stock" class="w-full p-2 border border-gray-300 rounded">
+          `;
+          variants.appendChild(variant);
+        });
+      });
+    }
+
+    // Submit button functionality
+    document.querySelector('button:contains("Submit Product")').addEventListener('click', () => {
+      alert('Product submitted successfully!');
+    });
+  </script>
+</body>
+</html> 

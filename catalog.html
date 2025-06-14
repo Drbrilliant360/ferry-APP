@@ -45,20 +45,33 @@
 
   <!-- Search and Filter -->
   <div class="p-4 bg-white shadow-sm rounded-lg mx-4 -mt-8 z-10">
-    <input type="text" id="catalog-search-input" placeholder="Search products..." class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 mb-3"/>
+    <div class="relative">
+      <input type="text" id="catalog-search-input" placeholder="Search products..." class="w-full p-3 pl-10 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 mb-3"/>
+      <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+      </svg>
+      <button id="clear-search" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 hidden">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
     <div class="flex justify-between items-center">
       <select class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-gray-700">
-        <option>All Categories</option>
-        <option>Fish</option>
-        <option>Shrimp</option>
-        <option>Crab</option>
-        <option>Octopus</option>
+        <option value="all">All Categories</option>
+        <option value="Fish">Fish</option>
+        <option value="Shellfish">Shellfish</option>
+        <option value="Crustaceans">Crustaceans</option>
+        <option value="Mollusks">Mollusks</option>
       </select>
-      <select class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-gray-700">
-        <option>Sort by: Popularity</option>
-        <option>Sort by: Price Low to High</option>
-        <option>Sort by: Price High to Low</option>
-      </select>
+      <div class="sort-container">
+        <label for="sort-select">Sort by:</label>
+        <select id="sort-select" onchange="sortProducts()">
+          <option value="popularity">Popularity</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="price-low">Price: Low to High</option>
+        </select>
+      </div>
     </div>
   </div>
 
@@ -106,46 +119,191 @@
     </a>
   </nav>
 
+  <script src="cart.js"></script>
   <script>
-    // Sample product data
+    // Sample product data with popularity field and categories
     const products = [
-      { id: 1, name: 'Nguru', price: 25000, image: 'images/nguru.jpg' },
-      { id: 2, name: 'Vhangu', price: 18000, image: 'images/vhangu.jpg' },
-      { id: 3, name: 'Pweza', price: 30000, image: 'images/pweza.jpg' },
-      { id: 4, name: 'Tasi', price: 20000, image: 'images/tasi.jpg' },
-      { id: 5, name: 'Chewa', price: 22000, image: 'images/chewa.jpg' },
-      { id: 6, name: 'Ngisi', price: 28000, image: 'images/ngisi.jpg' },
-      { id: 7, name: 'Kolkole', price: 15000, image: 'images/kolkole.jpg' },
-      { id: 8, name: 'Kambale', price: 19000, image: 'images/kambale.jpg' },
-      { id: 9, name: 'Papa', price: 35000, image: 'images/papa.jpg' },
-      { id: 10, name: 'Kaffulu', price: 24000, image: 'images/kaffulu.jpg' }
+      // Fish Category
+      { id: 1, name: 'Nguru', price: 25000, image: 'images/nguru.jpg', popularity: 5, category: 'Fish' },
+      { id: 2, name: 'Vhangu', price: 18000, image: 'images/vhangu.jpg', popularity: 4, category: 'Fish' },
+      { id: 3, name: 'Chewa', price: 22000, image: 'images/chewa.jpg', popularity: 1, category: 'Fish' },
+      { id: 4, name: 'Kambale', price: 19000, image: 'images/kambale.jpg', popularity: 2, category: 'Fish' },
+      { id: 5, name: 'Papa', price: 35000, image: 'images/papa.jpg', popularity: 5, category: 'Fish' },
+      
+      // Shellfish Category
+      { id: 6, name: 'Pweza', price: 30000, image: 'images/pweza.jpg', popularity: 3, category: 'Shellfish' },
+      { id: 7, name: 'Ngisi', price: 28000, image: 'images/ngisi.jpg', popularity: 4, category: 'Shellfish' },
+      { id: 8, name: 'Kolkole', price: 15000, image: 'images/kolkole.jpg', popularity: 3, category: 'Shellfish' },
+      { id: 9, name: 'Kaffulu', price: 24000, image: 'images/kaffulu.jpg', popularity: 3, category: 'Shellfish' },
+      
+      // Crustaceans Category
+      { id: 10, name: 'Tasi', price: 20000, image: 'images/tasi.jpg', popularity: 2, category: 'Crustaceans' },
+      { id: 11, name: 'Kambale wa Pwani', price: 22000, image: 'images/kambale-pwani.jpg', popularity: 4, category: 'Crustaceans' },
+      
+      // Mollusks Category
+      { id: 12, name: 'Chaza', price: 18000, image: 'images/chaza.jpg', popularity: 3, category: 'Mollusks' },
+      { id: 13, name: 'Kome', price: 16000, image: 'images/kome.jpg', popularity: 2, category: 'Mollusks' }
     ];
 
-    // Render products
-    const productGrid = document.getElementById('product-grid');
-    products.forEach(product => {
-      const productElement = document.createElement('div');
-      productElement.className = 'bg-white rounded-lg shadow-md p-3 group hover:shadow-lg transition-all duration-300';
-      productElement.innerHTML = `
-        <a href="product.html?id=${product.id}" class="block">
-          <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover rounded-lg">
-          <div class="mt-3">
-            <h4 class="font-bold text-base text-gray-800 group-hover:text-blue-600 transition-colors duration-300">${product.name}</h4>
-            <p class="text-blue-700 font-bold text-lg mt-1">TZS ${product.price}</p>
-          </div>
-        </a>
-        <button class="mt-3 w-full bg-blue-600 text-white rounded-lg py-2.5 text-sm font-semibold hover:bg-blue-700 transition duration-300 shadow-md transform hover:-translate-y-1" onclick="addToCart(${product.id}, '${product.name}', ${product.price})">Add to Cart</button>
-      `;
-      productGrid.appendChild(productElement);
+    // Update category filter options
+    const categorySelect = document.querySelector('select');
+    categorySelect.innerHTML = `
+      <option value="all">All Categories</option>
+      <option value="Fish">Fish</option>
+      <option value="Shellfish">Shellfish</option>
+      <option value="Crustaceans">Crustaceans</option>
+      <option value="Mollusks">Mollusks</option>
+    `;
+
+    // Enhanced search functionality
+    const searchInput = document.getElementById('catalog-search-input');
+    const clearSearchBtn = document.getElementById('clear-search');
+    let searchTimeout;
+
+    function filterAndSearchProducts() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const selectedCategory = categorySelect.value;
+      
+      let filteredProducts = products.filter(product => {
+        const matchesSearch = product.name.toLowerCase().includes(searchTerm) || 
+                            product.category.toLowerCase().includes(searchTerm);
+        const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
+        return matchesSearch && matchesCategory;
+      });
+      
+      displayProducts(filteredProducts);
+    }
+
+    // Debounced search function
+    function debouncedSearch() {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(filterAndSearchProducts, 300);
+    }
+
+    // Event listeners for search
+    searchInput.addEventListener('input', () => {
+      clearSearchBtn.style.display = searchInput.value ? 'block' : 'none';
+      debouncedSearch();
     });
 
-    // Add to cart functionality
-    function addToCart(productId, productName, price) {
-      const cartCount = document.getElementById('cart-count');
-      let count = parseInt(cartCount.textContent);
-      cartCount.textContent = count + 1;
-      alert(`${productName} added to cart!`);
+    clearSearchBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      clearSearchBtn.style.display = 'none';
+      filterAndSearchProducts();
+    });
+
+    // Category filter event listener
+    categorySelect.addEventListener('change', filterAndSearchProducts);
+
+    // Function to sort products
+    function sortProducts() {
+      const sortSelect = document.getElementById('sort-select');
+      const sortValue = sortSelect.value;
+      
+      let sortedProducts = [...products];
+      
+      switch(sortValue) {
+        case 'price-high':
+          sortedProducts.sort((a, b) => b.price - a.price);
+          break;
+        case 'price-low':
+          sortedProducts.sort((a, b) => a.price - b.price);
+          break;
+        case 'popularity':
+          sortedProducts.sort((a, b) => b.popularity - a.popularity);
+          break;
+      }
+      
+      displayProducts(sortedProducts);
     }
+
+    // Function to display products
+    function displayProducts(productsToDisplay) {
+      const container = document.getElementById('product-grid');
+      container.innerHTML = '';
+      
+      if (productsToDisplay.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-2 text-center py-8">
+            <p class="text-gray-500 text-lg">No products found matching your criteria.</p>
+          </div>
+        `;
+        return;
+      }
+      
+      productsToDisplay.forEach(product => {
+        const productElement = document.createElement('div');
+        productElement.className = 'bg-white rounded-lg shadow-md p-3 group hover:shadow-lg transition-all duration-300';
+        productElement.innerHTML = `
+          <a href="product.html?id=${product.id}" class="block">
+            <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover rounded-lg" onerror="this.src='images/placeholder.jpg'">
+            <div class="mt-3">
+              <h4 class="font-bold text-base text-gray-800 group-hover:text-blue-600 transition-colors duration-300">${product.name}</h4>
+              <p class="text-blue-700 font-bold text-lg mt-1">TZS ${product.price.toLocaleString()}</p>
+              <span class="text-sm text-gray-500">${product.category}</span>
+            </div>
+          </a>
+          <div class="mt-3">
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center border border-gray-300 rounded-lg">
+                <button onclick="updateQuantity(${product.id}, 'decrease')" class="px-3 py-1 text-gray-600 hover:bg-gray-100 rounded-l-lg">-</button>
+                <span id="quantity-${product.id}" class="px-3 py-1 border-x border-gray-300">1</span>
+                <button onclick="updateQuantity(${product.id}, 'increase')" class="px-3 py-1 text-gray-600 hover:bg-gray-100 rounded-r-lg">+</button>
+              </div>
+            </div>
+            <button onclick="addToCart(${product.id})" class="w-full bg-blue-600 text-white rounded-lg py-2 text-sm font-semibold hover:bg-blue-700 transition duration-300 shadow-md">
+              Add to Cart
+            </button>
+          </div>
+        `;
+        container.appendChild(productElement);
+      });
+    }
+
+    // Function to update quantity
+    function updateQuantity(productId, action) {
+      const quantityElement = document.getElementById(`quantity-${productId}`);
+      let quantity = parseInt(quantityElement.textContent);
+      
+      if (action === 'increase') {
+        quantity = Math.min(quantity + 1, 10); // Limit to 10 items
+      } else if (action === 'decrease') {
+        quantity = Math.max(quantity - 1, 1); // Minimum 1 item
+      }
+      
+      quantityElement.textContent = quantity;
+    }
+
+    // Function to add to cart
+    function addToCart(productId) {
+      const product = products.find(p => p.id === productId);
+      const quantity = parseInt(document.getElementById(`quantity-${productId}`).textContent);
+      
+      if (product) {
+        // Add the item to cart with the selected quantity
+        for (let i = 0; i < quantity; i++) {
+          cart.addItem(product);
+        }
+        
+        // Show success message
+        const successMessage = document.createElement('div');
+        successMessage.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 transform transition-transform duration-300 translate-y-0';
+        successMessage.textContent = `Added ${quantity} ${product.name} to cart`;
+        document.body.appendChild(successMessage);
+        
+        // Remove success message after 2 seconds
+        setTimeout(() => {
+          successMessage.style.transform = 'translateY(-100%)';
+          setTimeout(() => successMessage.remove(), 300);
+        }, 2000);
+      }
+    }
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', () => {
+      displayProducts(products);
+      cart.updateCartCount();
+    });
   </script>
 </body>
 </html> 
